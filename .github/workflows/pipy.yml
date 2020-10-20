@@ -29,7 +29,5 @@ jobs:
         with:
           # The version of python to install
           python_version: 3.8
-          # The version of poetry to install
-          poetry_version: 1.0.10
           # API token to authenticate when uploading package to PyPI (https://pypi.org/manage/account/)
           pypi_token: ${{ secrets.PIPY_TOKEN }}
