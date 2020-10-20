@@ -1,0 +1,8 @@
+.mypy_cache
+.pytest_cache
+.vscode
+
+*.log
+*.pot
+*.pyc
+__pycache__
