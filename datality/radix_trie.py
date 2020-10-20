@@ -2,8 +2,7 @@ from typing import Any, Dict, List
 
 
 class Node:
-    """node chainable storage unit
-    """
+    """node chainable storage unit"""
 
     def __init__(self, value: Any = None):
         self.value: Any = value
@@ -28,9 +27,9 @@ class RadixTree:
         Args:
             key (Any): the key must be iterable
         """
+
         def lcp(key_1: Any, key_2: Any) -> int:
-            """largest common prefix
-            """
+            """largest common prefix"""
             for i in range(min(len(key_1), len(key_2))):
                 if key_1[i] != key_2[i]:
                     return i
@@ -76,6 +75,7 @@ class RadixTree:
             node.children.setdefault(partial_key, Node()).value = key
             # update length
             self.length += 1
+
         return r(self.root, key)
 
     def predict(self, partial_key: Any = None) -> []:
@@ -102,16 +102,14 @@ class RadixTree:
         res = []
 
         def dig(node: Node) -> None:
-            """explore all the leafs from the node
-            """
+            """explore all the leafs from the node"""
             if node.value is not None:
                 res.append(f"{node.value}")
             for k, child in node.children.items():
                 dig(child)
 
         def r(node: Node, partial_key: Any) -> None:
-            """search recursively the given partial_key
-            """
+            """search recursively the given partial_key"""
             # look for similar roots in the children...
             for k, child in node.children.items():
                 i = lcp(k, partial_key)
@@ -140,8 +138,7 @@ class RadixTree:
             raise KeyError(f"{key} not found")
 
         def lcp(key_1: Any, key_2: Any) -> int:
-            """largest common prefix
-            """
+            """largest common prefix"""
             i = 0
             while i < min(len(key_1), len(key_2)):
                 if key_1[i] != key_2[i]:
@@ -152,8 +149,7 @@ class RadixTree:
         _key = key[:]
 
         def r(node: Node, key: Any) -> Node:
-            """search recursively the node with the given key
-            """
+            """search recursively the node with the given key"""
             if not key:
                 return node
             # look for similar roots in the children...

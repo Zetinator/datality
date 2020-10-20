@@ -5,4 +5,8 @@
 *.log
 *.pot
 *.pyc
+
+*.coverage
+coverage.xml
+
 __pycache__

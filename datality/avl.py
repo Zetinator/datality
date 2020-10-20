@@ -84,8 +84,9 @@ class AVL(BST):
         """
         if not node:
             return
-        node.weight = max(self.compute_weight(node.left),
-                          self.compute_weight(node.right)) + 1
+        node.weight = (
+            max(self.compute_weight(node.left), self.compute_weight(node.right)) + 1
+        )
 
     def insert(self, value: Any) -> None:
         """insert a new node into the bst, and rebalance
@@ -101,8 +102,7 @@ class AVL(BST):
             return
 
         def r(current_node: Node, value: Any):
-            """modified bst insertion
-            """
+            """modified bst insertion"""
             if current_node.value == value:
                 # if value already in the tree do nothing
                 self.length -= 1
@@ -138,6 +138,7 @@ class AVL(BST):
                     self.rotate_right(current_node.right)
                 self.rotate_left(current_node)
                 return
+
         r(self.root, value)
         # update length
         self.length += 1
@@ -155,8 +156,7 @@ class AVL(BST):
             raise KeyError(f"{value} not found")
 
         def fetch(node: Node, parent: Node):
-            """standard bst search but keeps track of the parents
-            """
+            """standard bst search but keeps track of the parents"""
             if not node:
                 raise KeyError(f"{value} not found")
             if node.value == value:
@@ -165,6 +165,7 @@ class AVL(BST):
                 return fetch(node.left, node)
             else:
                 return fetch(node.right, node)
+
         node, parent = fetch(self.root, None)
 
         def r(node: Node, parent: Node):
@@ -195,6 +196,7 @@ class AVL(BST):
                 r(node.left, node)
             # do not forget to update the weights
             self.update_weight(node)
+
         r(node, parent)
         # update length
         self.length -= 1

@@ -39,8 +39,7 @@ class RBTree(BST):
             return
 
         def r(node: Node, parent: Node):
-            """modified bst insertion
-            """
+            """modified bst insertion"""
             if value == node.value:
                 # already in the tree? do nothing
                 self.length -= 1
@@ -86,6 +85,7 @@ class RBTree(BST):
                 # switch colors parent <-> brother
                 bro = self.brother(node, parent)
                 parent.color, bro.color = bro.color, parent.color
+
         r(self.root, None)
         # update length
         self.length += 1

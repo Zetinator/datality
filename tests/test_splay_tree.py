@@ -5,8 +5,7 @@ from datality.splay_tree import SplayTree
 def test_avl_initialize():
     """create a splay_tree from a list of values"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     splay_tree = SplayTree(init)
     assert len(splay_tree) == 20
     # empty list
@@ -22,8 +21,7 @@ def test_avl_initialize():
 def test_avl_search():
     """search in the splay_tree the given value"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     splay_tree = SplayTree(init)
     assert splay_tree.search(3).value == 3
     # empty list
@@ -50,16 +48,14 @@ def test_avl_delete():
     with pytest.raises(KeyError):
         splay_tree.delete(8)
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     splay_tree = SplayTree(init)
     splay_tree.delete(15)
     assert len(splay_tree) == 19
     with pytest.raises(KeyError):
         splay_tree.search(15)
     # delete head
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     splay_tree = SplayTree(init)
     head_value = splay_tree.root.value
     splay_tree.delete(head_value)
@@ -86,8 +82,7 @@ def test_avl_successor():
     with pytest.raises(KeyError):
         splay_tree.successor(7)
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     splay_tree = SplayTree(init)
     assert splay_tree.successor(0).value == 1
     assert splay_tree.successor(7).value == 8

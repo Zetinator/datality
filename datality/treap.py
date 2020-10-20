@@ -66,8 +66,7 @@ class Treap(BST):
             return
 
         def r(node):
-            """modified bst insertion
-            """
+            """modified bst insertion"""
             if value == node.value:
                 # already in the tree do nothing...
                 self.length -= 1
@@ -89,6 +88,7 @@ class Treap(BST):
             else:
                 if node.left.priority > node.priority:
                     self.rotate_right(node)
+
         r(self.root)
         # update length
         self.length += 1
@@ -116,8 +116,7 @@ class Treap(BST):
         node, parent = get(self.root, None)
 
         def r(node, parent):
-            """standard bst search but keeps track of the parents
-            """
+            """standard bst search but keeps track of the parents"""
             if not node.left and not node.right:
                 # special case: root
                 if not parent:
@@ -131,15 +130,18 @@ class Treap(BST):
                     parent.left = None
                     return
             # rotate with max_child, until no childs remain...
-            def priority(node): return node.priority if node else -float("inf")
-            max_child = max(node.left, node.right,
-                            key=lambda node: priority(node))
+
+            def priority(node):
+                return node.priority if node else -float("inf")
+
+            max_child = max(node.left, node.right, key=lambda node: priority(node))
             if max_child == node.right:
                 self.rotate_left(node)
                 return r(node.left, node)
             else:
                 self.rotate_right(node)
                 return r(node.right, node)
+
         r(node, parent)
         # update length
         self.length -= 1

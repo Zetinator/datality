@@ -5,8 +5,7 @@ from datality.treap import Treap
 def test_avl_initialize():
     """create a treap from a list of values"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     treap = Treap(init)
     assert len(treap) == 20
     # empty list
@@ -22,8 +21,7 @@ def test_avl_initialize():
 def test_avl_search():
     """search in the treap the given value"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     treap = Treap(init)
     assert treap.search(3).value == 3
     # empty list
@@ -50,16 +48,14 @@ def test_avl_delete():
     with pytest.raises(KeyError):
         treap.delete(8)
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     treap = Treap(init)
     treap.delete(15)
     assert len(treap) == 19
     with pytest.raises(KeyError):
         treap.search(15)
     # delete head
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     treap = Treap(init)
     head_value = treap.root.value
     treap.delete(head_value)
@@ -86,8 +82,7 @@ def test_avl_successor():
     with pytest.raises(KeyError):
         treap.successor(7)
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     treap = Treap(init)
     assert treap.successor(0).value == 1
     assert treap.successor(7).value == 8

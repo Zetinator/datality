@@ -5,8 +5,7 @@ from datality.deque import Deque
 def test_linked_list_append():
     """create a linked list from a list of values"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     assert len(dq) == 20
     # empty list
@@ -22,8 +21,7 @@ def test_linked_list_append():
 def test_linked_list_search():
     """search in a linked list for a given value"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     assert dq.search(3).value == 3
     # empty list
@@ -53,8 +51,7 @@ def test_linked_list_insert():
     assert len(dq) == 2
     assert dq.head.value == 69
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     dq.insert(69, 3)
     assert len(dq) == 21
@@ -81,15 +78,13 @@ def test_linked_list_delete():
     assert dq.head == dq.tail
     assert dq.head is None
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     dq.delete(15)
     assert len(dq) == 19
     assert dq.head.next.next.value == 3
     # delete tail
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     dq.delete(16)
     assert len(dq) == 19
@@ -111,8 +106,7 @@ def test_linked_list_getitem():
     with pytest.raises(IndexError):
         dq[2]
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     assert dq[2].value == 15
     assert dq[-1].value == 16
@@ -132,8 +126,7 @@ def test_deque_pop_left():
     assert dq.head == dq.tail
     assert dq.head is None
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     for i in range(len(dq)):
         assert dq.pop_left().value == init[i]
@@ -153,8 +146,7 @@ def test_deque_pop_right():
     assert dq.head == dq.tail
     assert dq.head is None
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque(init)
     for i in range(len(dq)):
         assert dq.pop_right().value == init[-i - 1]
@@ -175,8 +167,7 @@ def test_deque_append_left():
     assert dq.head.value == 69
     assert dq.tail.value == 7
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     dq = Deque()
     for e in init:
         dq.append_left(e)

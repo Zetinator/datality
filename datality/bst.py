@@ -36,8 +36,7 @@ class BST:
             return
 
         def r(node: Node, value: Any):
-            """standard bst insertion
-            """
+            """standard bst insertion"""
             if node.value == value:
                 # value already in the tree, do nothing
                 self.length -= 1
@@ -52,6 +51,7 @@ class BST:
                     r(node.right, value)
                 else:
                     node.right = Node(value)
+
         r(self.root, value)
         # update length
         self.length += 1

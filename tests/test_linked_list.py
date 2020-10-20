@@ -5,8 +5,7 @@ from datality.linked_list import LinkedList
 def test_linked_list_append():
     """create a linked list from a list of values"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
     assert len(ll) == 20
     # empty list
@@ -22,8 +21,7 @@ def test_linked_list_append():
 def test_linked_list_search():
     """search in a linked list for a given value"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
     assert ll.search(3).value == 3
     # empty list
@@ -53,8 +51,7 @@ def test_linked_list_insert():
     assert len(ll) == 2
     assert ll.head.value == 69
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
     ll.insert(69, 3)
     assert len(ll) == 21
@@ -81,15 +78,13 @@ def test_linked_list_delete():
     assert ll.head == ll.tail
     assert ll.head is None
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
     ll.delete(15)
     assert len(ll) == 19
     assert ll.head.next.next.value == 3
     # delete tail
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
     ll.delete(16)
     assert len(ll) == 19
@@ -111,8 +106,7 @@ def test_linked_list_getitem():
     with pytest.raises(IndexError):
         ll[2]
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
     assert ll[2].value == 15
     assert ll[-1].value == 16

@@ -1,4 +1,3 @@
-import pytest
 from datality.bit_mask import BitMask
 
 

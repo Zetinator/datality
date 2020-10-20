@@ -2,8 +2,7 @@ from typing import Any, Dict, List, Optional
 
 
 class Node:
-    """node chainable storage unit
-    """
+    """node chainable storage unit"""
 
     def __init__(self, value: Any = None):
         self.value = value
@@ -45,10 +44,9 @@ class Trie:
             raise KeyError(f"{key} not found")
 
         def r(node: Node, partial_key: Any = key) -> bool:
-            """recursively search and destroy :D
-            """
+            """recursively search and destroy :D"""
             # found... remove the value
-            if (key == node.value):
+            if key == node.value:
                 node.value = None
                 # propagate the deletion returning true as signal
                 if not node.children:
@@ -59,7 +57,7 @@ class Trie:
             if partial_key[0] in node.children:
                 # when we receive the *signal* cut off the lineage
                 if r(node.children[partial_key[0]], partial_key[1:]):
-                    del(node.children[partial_key[0]])
+                    del node.children[partial_key[0]]
                     # chain reaction?
                     if node.value is None and not node.children:
                         return True
@@ -91,14 +89,14 @@ class Trie:
                 return []
 
         def deep(node: Node):
-            """explore all leafs from where we currently are
-            """
+            """explore all leafs from where we currently are"""
             # found a match, add it
             if node.value is not None:
                 tmp.append(node.value)
             # keep exploring
             for child in node.children.values():
                 deep(child)
+
         deep(node)
         return tmp
 
@@ -127,19 +125,20 @@ class Trie:
         def r(node: Node, level: int = 0):
             # print under line
             if node.value is not None:
-                res.append('\n' + ' '*4*level + f'{node.value}\n')
+                res.append("\n" + " " * 4 * level + f"{node.value}\n")
                 # remember where we are to keep printing children
                 if node.children:
-                    res.append(' '*4*level)
+                    res.append(" " * 4 * level)
             # explore the children
             children = list(node.children.items())
             for i, (k, child) in enumerate(children):
-                res.append(f'-({k})')
+                res.append(f"-({k})")
                 r(child, level + 1)
-                if i < len(children)-1:
-                    res.append(' '*4*level)
+                if i < len(children) - 1:
+                    res.append(" " * 4 * level)
+
         r(self.root)
-        return ''.join(res)
+        return "".join(res)
 
     def __len__(self):
         return self.length

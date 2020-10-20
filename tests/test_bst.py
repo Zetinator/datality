@@ -5,8 +5,7 @@ from datality.bst import BST
 def test_bst_initialize():
     """create a bst from a list of values"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
     assert len(bst) == 20
     # empty list
@@ -22,8 +21,7 @@ def test_bst_initialize():
 def test_bst_search():
     """search in the bst the given value"""
     # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
     assert bst.search(3).value == 3
     # empty list
@@ -50,16 +48,14 @@ def test_bst_delete():
     with pytest.raises(KeyError):
         bst.delete(8)
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
     bst.delete(15)
     assert len(bst) == 19
     with pytest.raises(KeyError):
         bst.search(15)
     # delete head
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
     bst.delete(7)
     assert len(bst) == 19
@@ -84,8 +80,7 @@ def test_bst_successor():
     with pytest.raises(KeyError):
         bst.successor(7)
     # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19,
-            0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
     assert bst.successor(0).value == 1
     assert bst.successor(7).value == 8

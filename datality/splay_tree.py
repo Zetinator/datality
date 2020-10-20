@@ -60,6 +60,7 @@ class SplayTree(BST):
                     node.right = Node(value)
                 # went right? rotate back left
                 self.rotate_left(node)
+
         r(self.root)
         # update length
         self.length += 1
@@ -82,8 +83,7 @@ class SplayTree(BST):
             raise KeyError(f"{value} not found")
 
         def r(node):
-            """bt + rotations
-            """
+            """bt + rotations"""
             if not node:
                 raise KeyError(f"{value} not found")
             if value == node.value:
@@ -96,6 +96,7 @@ class SplayTree(BST):
                 r(node.right)
                 # went right? rotate back left
                 self.rotate_left(node)
+
         r(self.root)
         # after the search the found node is the new root :O
         return self.root
