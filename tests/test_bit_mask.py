@@ -1,5 +1,5 @@
 import pytest
-from collectionz.bit_mask import BitMask
+from datality.bit_mask import BitMask
 
 
 def test_bit_mask_set():

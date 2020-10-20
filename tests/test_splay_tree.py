@@ -1,5 +1,5 @@
 import pytest
-from collectionz.splay_tree import SplayTree
+from datality.splay_tree import SplayTree
 
 
 def test_avl_initialize():

@@ -1,5 +1,5 @@
 from typing import Any, List, Optional
-from collectionz.double_linked_list import DoubleLinkedList
+from datality.double_linked_list import DoubleLinkedList
 
 
 class Node:

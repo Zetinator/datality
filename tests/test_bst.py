@@ -1,5 +1,5 @@
 import pytest
-from collectionz.bst import BST
+from datality.bst import BST
 
 
 def test_bst_initialize():

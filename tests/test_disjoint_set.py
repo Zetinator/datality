@@ -1,4 +1,4 @@
-from collectionz.disjoint_set import DJS
+from datality.disjoint_set import DJS
 
 
 def test_bst_union_find():

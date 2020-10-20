@@ -1,4 +1,4 @@
-from collectionz.fenwick_tree import FenwickTree
+from datality.fenwick_tree import FenwickTree
 
 
 def test_fenwick_tree_initialize():

@@ -1,5 +1,5 @@
 import pytest
-from collectionz.treap import Treap
+from datality.treap import Treap
 
 
 def test_avl_initialize():

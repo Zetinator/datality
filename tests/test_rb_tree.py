@@ -1,5 +1,5 @@
 import pytest
-from collectionz.rb_tree import RBTree
+from datality.rb_tree import RBTree
 
 
 def test_rb_tree_initialize():

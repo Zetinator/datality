@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "collectionz"
+name = "datality"
 version = "0.1.0"
 description = ""
 authors = ["Zetinator <erick_zetina@hotmail.com>"]

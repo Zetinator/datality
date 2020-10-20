@@ -1,5 +1,5 @@
 import pytest
-from collectionz.linked_list import LinkedList
+from datality.linked_list import LinkedList
 
 
 def test_linked_list_append():

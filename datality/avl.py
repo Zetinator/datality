@@ -1,6 +1,6 @@
 from typing import Any, List, Optional
 
-from collectionz.bst import BST
+from datality.bst import BST
 
 
 class Node:

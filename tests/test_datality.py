@@ -1,4 +1,4 @@
-from collectionz import __version__
+from datality import __version__
 
 
 def test_version():

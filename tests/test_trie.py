@@ -1,5 +1,5 @@
 import pytest
-from collectionz.trie import Trie
+from datality.trie import Trie
 
 
 def test_trie_initialize():

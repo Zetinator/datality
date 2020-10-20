@@ -1,5 +1,5 @@
 import pytest
-from collectionz.min_heap import Heap
+from datality.min_heap import Heap
 
 
 def test_heap_initialize():

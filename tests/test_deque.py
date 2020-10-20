@@ -1,5 +1,5 @@
 import pytest
-from collectionz.deque import Deque
+from datality.deque import Deque
 
 
 def test_linked_list_append():

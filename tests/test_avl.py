@@ -1,5 +1,5 @@
 import pytest
-from collectionz.avl import AVL
+from datality.avl import AVL
 
 
 def test_avl_initialize():

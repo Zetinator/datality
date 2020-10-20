@@ -1,5 +1,5 @@
 import pytest
-from collectionz.radix_trie import RadixTree
+from datality.radix_trie import RadixTree
 
 
 def test_radix_tree_initialize():
