@@ -9,8 +9,10 @@ datality
     :target: https://github.com/Zetinator/datality/workflows/Upload%20Python%20Package/
 
 
-..  image:: https://github.com/Zetinator/datality/workflows/coverage/badge.svg?branch=main
-    :target: https://github.com/Zetinator/datality/workflows/coverage/
+
+..  image:: https://codecov.io/gh/Zetinator/datality/branch/main/graph/badge.svg?token=AFJ36BHDQ7
+    :target: https://codecov.io/gh/Zetinator/datality
+    
 
 
 this package contains implementations from the classic datastructures in the *CLRS*
