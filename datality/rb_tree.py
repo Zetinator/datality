@@ -29,7 +29,7 @@ class RBTree(BST):
         """insert a new node with the given `value` into the tree
 
         Args:
-            value (Any): value to be inserted
+            value (Any): must be comparable
         """
         # special case: empty tree
         if not self.root:

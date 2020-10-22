@@ -57,7 +57,6 @@ class VEB:
         self._u = self._u << 1
         # build tree from root
         self.root: Node = Node(self._u)
-        self._length: int = 0
         # insert elements in the tree
         for key in keys:
             self.insert(key)
@@ -147,8 +146,6 @@ class VEB:
                 r(node.clusters.setdefault(i, Node(u)), j)
 
         r(self.root, key)
-        # update length
-        self._length += 1
 
     def successor(self, key: int) -> int:
         """returns the successor of the given key in the tree
@@ -199,15 +196,13 @@ class VEB:
         """deletes a `key` from the tree in O(log log U)"""
         # special case: empty tree
         if self.root.min is None:
-            raise KeyError(f"{key} not found")
-        # is the key contained in the tree?
-        self.search(key)
+            return
 
         def r(node, x: int) -> bool:
             """delete recursively"""
             # base case: we reached a node with a single element
             # return a signal to the parent to erase this empty child
-            if node.min is None or x < node.min or x > node.max:
+            if node.min is None or x < node.min or node.max < x:
                 return False
             if node.min == node.max:
                 return True
@@ -219,7 +214,7 @@ class VEB:
                     return False
                 tmp = node.summary.min
                 # new min discovered, update
-                x = node.min = tmp * int(node._u ** (1 / 2)) + node.clusters[tmp].min
+                x = node.min = tmp * int(node._u ** (1 / 2)) + node.clusters.get(tmp, Node(2)).min or 0
             # get cluster -> i (high) and offset -> j (low)
             i = x // int(node._u ** (1 / 2))
             j = x % int(node._u ** (1 / 2))
@@ -238,15 +233,13 @@ class VEB:
                     return
                 tmp = node.summary.max
                 if tmp in node.clusters:
-                    node.max = tmp * int(node._u ** (1 / 2)) + node.clusters[tmp].max
+                    node.max = tmp * int(node._u ** (1 / 2)) + node.clusters.get(tmp, Node(2)).max or 0
             return False
 
         # base case: we reached a node with a single element
         # return a signal to the parent to erase this empty child
         if r(self.root, key):
             self.root = Node(self._u)
-        # update the length
-        self._length -= 1
 
     def __repr__(self):
         """prints first the main node and summary trees recursevly"""
@@ -266,4 +259,4 @@ class VEB:
         return f"main:\n{main}\nsummary:\n{summary}"
 
     def __len__(self):
-        return self._length
+        return self._u

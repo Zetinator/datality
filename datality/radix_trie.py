@@ -30,6 +30,7 @@ class RadixTree:
 
         def lcp(key_1: Any, key_2: Any) -> int:
             """largest common prefix"""
+            i = 0
             for i in range(min(len(key_1), len(key_2))):
                 if key_1[i] != key_2[i]:
                     return i

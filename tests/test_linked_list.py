@@ -34,6 +34,8 @@ def test_linked_list_search():
     init = ["erick", "sophia", "marion"]
     ll = LinkedList(init)
     assert ll.search("sophia").value == "sophia"
+    with pytest.raises(ValueError):
+        ll.search("kim")
 
 
 def test_linked_list_insert():
@@ -51,6 +53,11 @@ def test_linked_list_insert():
     ll.insert(69, 0) == 3
     assert len(ll) == 2
     assert ll.head.value == 69
+    # insert at tail
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    ll = LinkedList(init)
+    ll.insert(69, -1)
+    assert len(ll) == 21
     # common list of values
     init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
@@ -71,19 +78,8 @@ def test_linked_list_delete():
     ll = LinkedList(init)
     with pytest.raises(ValueError):
         ll.delete(8)
-    # single item
-    init = [7]
-    ll = LinkedList(init)
     ll.delete(7)
-    assert not ll
-    assert ll.head == ll.tail
-    assert ll.head is None
-    # common
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
-    ll = LinkedList(init)
-    ll.delete(15)
-    assert len(ll) == 19
-    assert ll.head.next.next.value == 3
+    assert len(ll) == 0
     # delete tail
     init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     ll = LinkedList(init)
@@ -91,6 +87,11 @@ def test_linked_list_delete():
     assert len(ll) == 19
     assert ll.tail.value == 16
     assert ll.tail.next is None
+    # common
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    ll = LinkedList(init)
+    for e in range(20):
+        ll.delete(e)
 
 
 def test_linked_list_getitem():
@@ -111,3 +112,25 @@ def test_linked_list_getitem():
     ll = LinkedList(init)
     assert ll[2].value == 15
     assert ll[-1].value == 16
+
+
+def test_linked_list_repr():
+    """deletes a new node with the given `value`"""
+    # empty
+    init = []
+    ll = LinkedList(init)
+    # single
+    init = [7]
+    ll = LinkedList(init)
+    res = """7"""
+    assert repr(ll) == res
+    # repeated
+    init = [7, 7, 7, 7, 7, 7, 7]
+    ll = LinkedList(init)
+    res = """7 -> 7 -> 7 -> 7 -> 7 -> 7 -> 7"""
+    assert repr(ll) == res
+    # common
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    ll = LinkedList(init)
+    res = """7 -> 17 -> 15 -> 3 -> 8 -> 13 -> 1 -> 18 -> 19 -> 0 -> 12 -> 5 -> 10 -> 9 -> 4 -> 14 -> 11 -> 2 -> 6 -> 16"""
+    assert repr(ll) == res

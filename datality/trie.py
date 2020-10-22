@@ -40,9 +40,6 @@ class Trie:
         self._length += 1
 
     def delete(self, key: Any) -> None:
-        if not key:
-            raise KeyError(f"{key} not found")
-
         def r(node: Node, partial_key: Any = key) -> bool:
             """recursively search and destroy :D"""
             # found... remove the value

@@ -56,9 +56,10 @@ class Treap(BST):
         """insert a new node with the given `value` in the tree
 
         standard bst insertion + rotations to keep the mighty heap invariance
+
+        Args:
+            value (Any): must be comparable
         """
-        if value is None:
-            return
         if not self.root:
             self.root = Node(value)
             # update length

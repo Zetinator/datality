@@ -76,6 +76,11 @@ class DoubleLinkedList:
             value (Any): value to be inserted
             index (int): position
         """
+        # handle negative indexes
+        if index < 0:
+            index = self._length + index
+        # sanitize
+        index = max(index, 0)
         # special index is out of range O(1)
         if self._length < index + 1:
             self.append(value)
@@ -171,10 +176,11 @@ class DoubleLinkedList:
         # handle negative indexes
         if index < 0:
             index = self._length + index
+        # sanitize
+        index = max(index, 0)
         # special case: empty list
         if not self.head:
             raise IndexError()
-        # handle negative indexes
         node = self.head
         while node and index > 0:
             node = node.next

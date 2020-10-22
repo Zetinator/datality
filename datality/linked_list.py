@@ -73,6 +73,11 @@ class LinkedList:
             value (Any): value to be inserted
             index (int): position
         """
+        # handle negative indexes
+        if index < 0:
+            index = self._length + index
+        # sanitize
+        index = max(index, 0)
         # special index is out of range O(1)
         if self._length < index + 1:
             self.append(value)
@@ -137,7 +142,7 @@ class LinkedList:
             node = node.next
         raise ValueError(f"{value} not in the list")
 
-    def __getitem__(self, i: int) -> Node:
+    def __getitem__(self, index: int) -> Node:
         """gets the node at the given `index`
 
         emulates the behavior of the `[]` operator on a normal list
@@ -152,18 +157,20 @@ class LinkedList:
             Node: node at the given `index`
         """
         # handle negative indexes
-        if i < 0:
-            i = self._length + i
+        if index < 0:
+            index = self._length + index
+        # sanitize
+        index = max(index, 0)
         # special case: empty list
         if not self.head:
             raise IndexError()
         # special case: tail
-        if i + 1 == self._length:
+        if index + 1 == self._length:
             return self.tail
         node = self.head
-        while node and i > 0:
+        while node and index > 0:
             node = node.next
-            i -= 1
+            index -= 1
         # out of range?
         if not node:
             raise IndexError()

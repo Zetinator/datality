@@ -5,15 +5,22 @@ from datality.avl import AVL
 
 def test_avl_initialize():
     """create a avl from a list of values"""
-    # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
-    avl = AVL(init)
-    print(f'\n{avl}')
-    assert len(avl) == 20
     # empty list
     init = []
     avl = AVL(init)
     assert not avl
+    # single
+    init = [7]
+    avl = AVL(init)
+    assert len(avl) == 1
+    # repeated
+    init = [7, 10, 7]
+    avl = AVL(init)
+    assert len(avl) == 2
+    # common list of values
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    avl = AVL(init)
+    assert len(avl) == 20
     # list of words
     init = ["erick", "sophia", "marion"]
     avl = AVL(init)
@@ -52,8 +59,10 @@ def test_avl_delete():
     # common
     init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     avl = AVL(init)
-    avl.delete(15)
-    assert len(avl) == 19
+    for e in init:
+        avl.delete(e)
+    assert len(avl) == 0
+    # erase non exitent
     with pytest.raises(KeyError):
         avl.search(15)
     # delete head

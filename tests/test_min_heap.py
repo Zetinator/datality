@@ -72,3 +72,12 @@ def test_heap_pop():
     heap = Heap(init)
     with pytest.raises(IndexError):
         heap.pop()
+
+
+def test_heap_repr():
+    """test repr"""
+    # common list of values
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    heap = Heap(init)
+    res = """[0, 2, 1, 3, 8, 5, 4, 11, 6, 16, 12, 13, 10, 9, 15, 14, 18, 19, 7, 17]"""
+    assert repr(heap) == res

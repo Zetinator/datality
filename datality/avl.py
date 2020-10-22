@@ -82,8 +82,6 @@ class AVL(BST):
         Args:
             node (Node): node to update the weights
         """
-        if not node:
-            return
         node.weight = (
             max(self.compute_weight(node.left), self.compute_weight(node.right)) + 1
         )
@@ -92,7 +90,7 @@ class AVL(BST):
         """insert a new node into the bst, and rebalance
 
         Args:
-            value (Any): value to insert
+            value (Any): must be comparable
         """
         # special case: empty bst
         if not self.root:
@@ -177,6 +175,7 @@ class AVL(BST):
                 # special case: root
                 if not parent:
                     self.root = None
+                    return
                 # actual deletion
                 if node == parent.right:
                     parent.right = None

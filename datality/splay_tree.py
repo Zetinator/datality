@@ -27,10 +27,13 @@ class SplayTree(BST):
         for value in values:
             self.insert(value)
 
-    def insert(self, value):
+    def insert(self, value: Any) -> None:
         """insert a new node with the given `value` in the tree
 
         standard bst insertion + rotate till root
+
+        Args:
+            value (Any): must be comparable
         """
         if not self.root:
             self.root = Node(value)

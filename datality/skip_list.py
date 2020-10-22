@@ -39,7 +39,7 @@ class SkipList:
         in this implementation the promotions occurs with probability = .5
 
         Args:
-            value (Any): value to insert in the list
+            value (Any): must be comparable
         """
         # reach the right level for the insertion
         node, node_stack = self.root, []

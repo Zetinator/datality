@@ -5,14 +5,22 @@ from datality.bst import BST
 
 def test_bst_initialize():
     """create a bst from a list of values"""
-    # common list of values
-    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
-    bst = BST(init)
-    assert len(bst) == 20
     # empty list
     init = []
     bst = BST(init)
     assert not bst
+    # single
+    init = [7]
+    bst = BST(init)
+    assert len(bst) == 1
+    # repeated
+    init = [7, 10, 7]
+    bst = BST(init)
+    assert len(bst) == 2
+    # common list of values
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    bst = BST(init)
+    assert len(bst) == 20
     # list of words
     init = ["erick", "sophia", "marion"]
     bst = BST(init)
@@ -51,16 +59,20 @@ def test_bst_delete():
     # common
     init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
-    bst.delete(15)
-    assert len(bst) == 19
+    for e in init:
+        bst.delete(e)
+    assert len(bst) == 0
+    # erase non exitent
     with pytest.raises(KeyError):
         bst.search(15)
     # delete head
     init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
-    bst.delete(7)
+    head_value = bst.root.value
+    bst.delete(head_value)
     assert len(bst) == 19
-    assert bst.root.value == 3
+    with pytest.raises(KeyError):
+        assert bst.search(head_value)
 
 
 def test_bst_successor():
@@ -83,6 +95,35 @@ def test_bst_successor():
     # common
     init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     bst = BST(init)
-    assert bst.successor(0).value == 1
-    assert bst.successor(7).value == 8
-    assert bst.successor(17).value == 18
+    for e in range(19):
+        bst.successor(e) == e + 1
+    with pytest.raises(KeyError):
+        bst.successor(19)
+
+
+def test_bst_repr():
+    """get the repr"""
+    # common
+    init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
+    bst = BST(init)
+    res = """			-->(19)
+		-->(18)
+	-->(17)
+			-->(16)
+		-->(15)
+					-->(14)
+				-->(13)
+					-->(12)
+							-->(11)
+						-->(10)
+							-->(9)
+			-->(8)
+-->(7)
+			-->(6)
+		-->(5)
+			-->(4)
+	-->(3)
+			-->(2)
+		-->(1)
+			-->(0)"""
+    assert repr(bst) == res

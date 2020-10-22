@@ -27,7 +27,7 @@ class BST:
 
 
         Args:
-            value (Any): value to be inserted
+            value (Any): must be comparable
         """
         # special case: empty tree
         if not self.root:
@@ -125,8 +125,6 @@ class BST:
         node = node.right
         while node.left:
             node = node.left
-        if not node:
-            raise KeyError(f"successor of {value} not found")
         return node
 
     def rotate_right(self, node: Node) -> None:
@@ -168,8 +166,6 @@ class BST:
         Raises:
             KeyError: raised when the value is not found
         """
-        if value is None:
-            raise KeyError(f"{value} not found")
 
         def fetch(node, parent):
             """recursively find the node to delete and his parent"""
@@ -195,6 +191,7 @@ class BST:
                 # special case: root
                 if not parent:
                     self.root = None
+                    return
                 # actual deletion
                 if node == parent.right:
                     parent.right = None
