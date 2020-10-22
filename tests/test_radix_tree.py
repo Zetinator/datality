@@ -1,4 +1,5 @@
 import pytest
+
 from datality.radix_trie import RadixTree
 
 

@@ -1,4 +1,5 @@
-from typing import Any, List, Optional
+from typing import Any, Iterable, Optional
+
 from datality.double_linked_list import DoubleLinkedList
 
 
@@ -16,7 +17,7 @@ class Deque(DoubleLinkedList):
     https://en.wikipedia.org/wiki/Double-ended_queue
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         super().__init__(values)
 
     def append_left(self, value: Any) -> None:
@@ -29,14 +30,14 @@ class Deque(DoubleLinkedList):
         if not self.head:
             self.head = Node(value)
             self.tail = self.head
-            self.length += 1
+            self._length += 1
             return
         # general case
-        tmp = self.head
+        _ = self.head
         self.head = Node(value)
-        self.head.next = tmp
+        self.head.next = _
         # update length
-        self.length += 1
+        self._length += 1
 
     def pop_left(self) -> Any:
         """pop the element at the begining of the list
@@ -47,12 +48,12 @@ class Deque(DoubleLinkedList):
         # special case: empty list
         if not self.head:
             raise IndexError()
-        tmp = self.head
+        _ = self.head
         # special case: single item
         if self.head == self.tail:
             self.tail = self.head.next
         self.head = self.head.next
-        return tmp
+        return _
 
     def pop_right(self) -> Any:
         """pop the element at the end of the list
@@ -63,9 +64,9 @@ class Deque(DoubleLinkedList):
         # special case: empty list
         if not self.head:
             raise IndexError()
-        tmp = self.tail
+        _ = self.tail
         # special case: single item
         if self.head == self.tail:
             self.head = None
         self.tail = self.tail.prev
-        return tmp
+        return _

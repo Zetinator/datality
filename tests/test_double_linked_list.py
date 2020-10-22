@@ -1,4 +1,5 @@
 import pytest
+
 from datality.double_linked_list import DoubleLinkedList
 
 

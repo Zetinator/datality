@@ -1,4 +1,5 @@
 import pytest
+
 from datality.treap import Treap
 
 

@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "datality"
 version = "0.1.2"
-description = "this package contains implementations from the classic datastructures in the CLRS"
+description = "this package contains implementations from the classic datas tructures in the CLRS"
 authors = ["Zetinator <erick_zetina@hotmail.com>"]
 
 [tool.poetry.dependencies]

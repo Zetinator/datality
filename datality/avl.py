@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Iterable, Optional
 
 from datality.bst import BST
 
@@ -19,9 +19,9 @@ class AVL(BST):
     https://en.wikipedia.org/wiki/AVL_tree
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         self.root: Optional[Node] = None
-        self.length: int = 0
+        self._length: int = 0
         for value in values:
             self.insert(value)
 
@@ -98,14 +98,14 @@ class AVL(BST):
         if not self.root:
             self.root = Node(value)
             # update length
-            self.length += 1
+            self._length += 1
             return
 
         def r(current_node: Node, value: Any):
             """modified bst insertion"""
             if current_node.value == value:
                 # if value already in the tree do nothing
-                self.length -= 1
+                self._length -= 1
                 return
             if value < current_node.value:
                 if current_node.left:
@@ -141,7 +141,7 @@ class AVL(BST):
 
         r(self.root, value)
         # update length
-        self.length += 1
+        self._length += 1
 
     def delete(self, value: Any) -> None:
         """search for value, and rotate until leaf, then delete
@@ -199,4 +199,4 @@ class AVL(BST):
 
         r(node, parent)
         # update length
-        self.length -= 1
+        self._length -= 1

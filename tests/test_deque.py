@@ -1,4 +1,5 @@
 import pytest
+
 from datality.deque import Deque
 
 

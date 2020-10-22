@@ -1,4 +1,5 @@
 import pytest
+
 from datality.linked_list import LinkedList
 
 

@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Iterable, Optional
 
 from datality.bst import BST
 
@@ -21,9 +21,9 @@ class SplayTree(BST):
     https://en.wikipedia.org/wiki/Splay_tree
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         self.root: Optional[Node] = None
-        self.length: int = 0
+        self._length: int = 0
         for value in values:
             self.insert(value)
 
@@ -35,7 +35,7 @@ class SplayTree(BST):
         if not self.root:
             self.root = Node(value)
             # update length
-            self.length += 1
+            self._length += 1
             return
 
         def r(node: Node):
@@ -44,7 +44,7 @@ class SplayTree(BST):
             """
             if value == node.value:
                 # already in the tree... do nothing
-                self.length -= 1
+                self._length -= 1
                 return
             if value < node.value:
                 if node.left:
@@ -63,7 +63,7 @@ class SplayTree(BST):
 
         r(self.root)
         # update length
-        self.length += 1
+        self._length += 1
 
     def search(self, value: Any) -> Node:
         """standard binary search + rotations

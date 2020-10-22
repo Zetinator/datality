@@ -9,6 +9,21 @@ class DJS:
 
     def __init__(self):
         self.parents: Dict[Any, Any] = dict()
+        self._length: int = 0
+
+    def make_set(self, node: Any) -> None:
+        """make a new set from the given `node`
+
+        Args:
+            node (Any): node to look the representantive for
+
+        Returns:
+            Any: the representantive of this node
+        """
+        if node not in self.parents:
+            self.parents[node] = node
+            # update length
+            self._length += 1
 
     def find(self, node: Any) -> Any:
         """get the representative node of this node
@@ -54,9 +69,11 @@ class DJS:
             self.parents[root_1] = root_2
         else:
             self.parents[root_2] = root_1
+        # we joined two sets... decrease the size
+        self._length -= 1
 
     def __repr__(self):
         return repr(self.parents)
 
     def __len__(self):
-        return len(self.parents)
+        return self._length

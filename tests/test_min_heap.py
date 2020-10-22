@@ -1,4 +1,5 @@
 import pytest
+
 from datality.min_heap import Heap
 
 

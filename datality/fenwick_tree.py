@@ -53,7 +53,7 @@ class FenwickTree:
         Returns:
             int: [description]
         """
-        if not (0 <= _from <= _to <= len(self.original)):
+        if not 0 <= _from <= _to <= len(self.original):
             raise IndexError(f"{(_from, _to)} out of range")
         # range query
         if _from:

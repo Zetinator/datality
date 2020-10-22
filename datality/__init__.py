@@ -10,6 +10,9 @@ from datality.linked_list import LinkedList
 from datality.min_heap import Heap
 from datality.radix_trie import RadixTree
 from datality.rb_tree import RBTree
+from datality.segment_tree import SegmentTree
+from datality.skip_list import SkipList
 from datality.splay_tree import SplayTree
 from datality.treap import Treap
 from datality.trie import Trie
+from datality.van_emde_boas import VEB

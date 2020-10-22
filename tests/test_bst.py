@@ -1,4 +1,5 @@
 import pytest
+
 from datality.bst import BST
 
 

@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, Iterable
 
 
 class Heap:
@@ -10,13 +10,13 @@ class Heap:
     https://en.wikipedia.org/wiki/Heap_(data_structure)
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         """build the heap from `values` in O(n)
 
         repairs the heap instead of pushing sequentially
 
         Args:
-            values (List[Any], optional): comparable items. Defaults to [].
+            values (Iterable[Any], optional): comparable items. Defaults to [].
         """
 
         self.core = values
@@ -65,7 +65,7 @@ class Heap:
         Args:
             index (int, optional): index to start sifting from. Defaults to 0.
         """
-        if not (0 <= index < len(self.core)):
+        if not 0 <= index < len(self.core):
             return
         core = self.core
 

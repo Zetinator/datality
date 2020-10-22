@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Iterable, Optional
 
 from datality.bst import BST
 
@@ -19,9 +19,9 @@ class RBTree(BST):
     https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         self.root: Optional[Node] = None
-        self.length: int = 0
+        self._length: int = 0
         for value in values:
             self.insert(value)
 
@@ -35,14 +35,14 @@ class RBTree(BST):
         if not self.root:
             self.root = Node(value, color="b")
             # update length
-            self.length += 1
+            self._length += 1
             return
 
         def r(node: Node, parent: Node):
             """modified bst insertion"""
             if value == node.value:
                 # already in the tree? do nothing
-                self.length -= 1
+                self._length -= 1
                 return
             if value < node.value:
                 if node.left:
@@ -88,7 +88,7 @@ class RBTree(BST):
 
         r(self.root, None)
         # update length
-        self.length += 1
+        self._length += 1
 
     def brother(self, node: Node, parent: Node) -> Node:
         """aux funtion to fetch my brother
@@ -114,11 +114,11 @@ class RBTree(BST):
         Args:
             node (Node): pivot of the rotation
         """
-        tmp = Node(node.value)
-        tmp.left, tmp.right = node.left.right, node.right
+        _ = Node(node.value)
+        _.left, _.right = node.left.right, node.right
         # rotate...
         node.value = node.left.value
-        node.left, node.right = node.left.left, tmp
+        node.left, node.right = node.left.left, _
 
     def rotate_left(self, node):
         """left rotation, on a given `node`
@@ -128,8 +128,8 @@ class RBTree(BST):
         Args:
             node (Node): pivot of the rotation
         """
-        tmp = Node(node.value)
-        tmp.left, tmp.right = node.left, node.right.left
+        _ = Node(node.value)
+        _.left, _.right = node.left, node.right.left
         # rotate...
         node.value = node.right.value
-        node.left, node.right = tmp, node.right.right
+        node.left, node.right = _, node.right.right

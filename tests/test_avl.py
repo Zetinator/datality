@@ -1,4 +1,5 @@
 import pytest
+
 from datality.avl import AVL
 
 
@@ -7,6 +8,7 @@ def test_avl_initialize():
     # common list of values
     init = [7, 17, 15, 3, 8, 13, 1, 18, 19, 0, 12, 5, 10, 9, 4, 14, 11, 2, 6, 16]
     avl = AVL(init)
+    print(f'\n{avl}')
     assert len(avl) == 20
     # empty list
     init = []

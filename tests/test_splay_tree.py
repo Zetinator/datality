@@ -1,4 +1,5 @@
 import pytest
+
 from datality.splay_tree import SplayTree
 
 

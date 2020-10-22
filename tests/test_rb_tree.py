@@ -1,4 +1,5 @@
 import pytest
+
 from datality.rb_tree import RBTree
 
 

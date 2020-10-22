@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Iterable, Optional
 
 
 class Node:
@@ -16,9 +16,9 @@ class BST:
     https://en.wikipedia.org/wiki/Binary_search_tree
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         self.root: Optional[Node] = None
-        self.length: int = 0
+        self._length: int = 0
         for value in values:
             self.insert(value)
 
@@ -32,14 +32,14 @@ class BST:
         # special case: empty tree
         if not self.root:
             self.root = Node(value)
-            self.length += 1
+            self._length += 1
             return
 
         def r(node: Node, value: Any):
             """standard bst insertion"""
             if node.value == value:
                 # value already in the tree, do nothing
-                self.length -= 1
+                self._length -= 1
                 return
             if value < node.value:
                 if node.left:
@@ -54,7 +54,7 @@ class BST:
 
         r(self.root, value)
         # update length
-        self.length += 1
+        self._length += 1
 
     def search(self, value: Any) -> Node:
         """searches the node with the given `value`
@@ -105,7 +105,7 @@ class BST:
         def r(node: Node, next_ancestor: Node):
             """find the node recursively, keep track of the anscestors"""
             if not node:
-                raise KeyError(f"{value} not in the tree")
+                raise KeyError(f"successor of {value} not found")
             if node.value == value:
                 # found
                 return (node, next_ancestor)
@@ -119,14 +119,14 @@ class BST:
         # no right subtree, return the previous bigger ancestor
         if not node.right:
             if not next_ancestor:
-                raise KeyError(f"{value} not in the tree")
+                raise KeyError(f"successor of {value} not found")
             return next_ancestor
         # go all the way left in the right subtree to get the successor
         node = node.right
         while node.left:
             node = node.left
         if not node:
-            raise KeyError(f"{value} not in the tree")
+            raise KeyError(f"successor of {value} not found")
         return node
 
     def rotate_right(self, node: Node) -> None:
@@ -137,11 +137,11 @@ class BST:
         Args:
             node (Node): pivot of the rotation
         """
-        tmp = Node(node.value)
-        tmp.left, tmp.right = node.left.right, node.right
+        _ = Node(node.value)
+        _.left, _.right = node.left.right, node.right
         # rotate...
         node.value = node.left.value
-        node.left, node.right = node.left.left, tmp
+        node.left, node.right = node.left.left, _
 
     def rotate_left(self, node):
         """left rotation, on a given `node`
@@ -151,11 +151,11 @@ class BST:
         Args:
             node (Node): pivot of the rotation
         """
-        tmp = Node(node.value)
-        tmp.left, tmp.right = node.left, node.right.left
+        _ = Node(node.value)
+        _.left, _.right = node.left, node.right.left
         # rotate...
         node.value = node.right.value
-        node.left, node.right = tmp, node.right.right
+        node.left, node.right = _, node.right.right
 
     def delete(self, value: Any) -> None:
         """deletes the node containinf the given `value`
@@ -215,7 +215,7 @@ class BST:
 
         r(node, parent)
         # update length
-        self.length -= 1
+        self._length -= 1
 
     def __repr__(self):
         res = []
@@ -232,4 +232,4 @@ class BST:
         return "\n".join(res)
 
     def __len__(self):
-        return self.length
+        return self._length

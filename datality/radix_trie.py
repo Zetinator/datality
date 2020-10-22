@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, Iterable
 
 
 class Node:
@@ -15,9 +15,9 @@ class RadixTree:
     https://en.wikipedia.org/wiki/Radix_tree
     """
 
-    def __init__(self, keys: List[Any] = []):
+    def __init__(self, keys: Iterable[Any] = []):
         self.root: Node = Node()
-        self.length: int = 0
+        self._length: int = 0
         for key in keys:
             self.insert(key)
 
@@ -52,7 +52,7 @@ class RadixTree:
             if not node.children:
                 node.children.setdefault(partial_key, Node()).value = key
                 # update length
-                self.length += 1
+                self._length += 1
                 return
             # look for similar roots in the children...
             for k, child in node.children.items():
@@ -74,7 +74,7 @@ class RadixTree:
             # special case 4: no common root... create new child branch
             node.children.setdefault(partial_key, Node()).value = key
             # update length
-            self.length += 1
+            self._length += 1
 
         return r(self.root, key)
 
@@ -177,4 +177,4 @@ class RadixTree:
         return "".join(res)
 
     def __len__(self):
-        return self.length
+        return self._length

@@ -1,5 +1,5 @@
 from random import uniform
-from typing import Any, List, Optional
+from typing import Any, Iterable, Optional
 
 from datality.bst import BST
 
@@ -20,9 +20,9 @@ class Treap(BST):
     https://en.wikipedia.org/wiki/Treap
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         self.root: Optional[Node] = None
-        self.length: int = 0
+        self._length: int = 0
         for value in values:
             self.insert(value)
 
@@ -31,26 +31,26 @@ class Treap(BST):
 
         https://en.wikipedia.org/wiki/AVL_tree#Simple_rotation
         """
-        tmp = Node(node.value)
+        _ = Node(node.value)
         # dont forget the priority
-        tmp.priority = node.priority
-        tmp.left, tmp.right = node.left.right, node.right
+        _.priority = node.priority
+        _.left, _.right = node.left.right, node.right
         # rotate...
         node.value, node.priority = node.left.value, node.left.priority
-        node.left, node.right = node.left.left, tmp
+        node.left, node.right = node.left.left, _
 
     def rotate_left(self, node: Node) -> None:
         """left rotation
 
         https://en.wikipedia.org/wiki/AVL_tree#Simple_rotation
         """
-        tmp = Node(node.value)
+        _ = Node(node.value)
         # dont forget the priority
-        tmp.priority = node.priority
-        tmp.left, tmp.right = node.left, node.right.left
+        _.priority = node.priority
+        _.left, _.right = node.left, node.right.left
         # rotate...
         node.value, node.priority = node.right.value, node.right.priority
-        node.left, node.right = tmp, node.right.right
+        node.left, node.right = _, node.right.right
 
     def insert(self, value: Any) -> None:
         """insert a new node with the given `value` in the tree
@@ -62,14 +62,14 @@ class Treap(BST):
         if not self.root:
             self.root = Node(value)
             # update length
-            self.length += 1
+            self._length += 1
             return
 
         def r(node):
             """modified bst insertion"""
             if value == node.value:
                 # already in the tree do nothing...
-                self.length -= 1
+                self._length -= 1
                 return
             if value < node.value:
                 if node.left:
@@ -91,7 +91,7 @@ class Treap(BST):
 
         r(self.root)
         # update length
-        self.length += 1
+        self._length += 1
 
     def delete(self, value: Any) -> None:
         """search and delete the node with the given `value` in the tree
@@ -144,4 +144,4 @@ class Treap(BST):
 
         r(node, parent)
         # update length
-        self.length -= 1
+        self._length -= 1

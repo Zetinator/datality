@@ -8,5 +8,6 @@
 
 *.coverage
 coverage.xml
+htmlcov
 
 __pycache__

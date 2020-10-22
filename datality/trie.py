@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Iterable, Optional
 
 
 class Node:
@@ -15,9 +15,9 @@ class Trie:
     https://en.wikipedia.org/wiki/Trie
     """
 
-    def __init__(self, keys: List[Any] = []):
+    def __init__(self, keys: Iterable[Any] = []):
         self.root: Optional[Node] = Node()
-        self.length: int = 0
+        self._length: int = 0
         for key in keys:
             self.insert(key)
 
@@ -34,10 +34,10 @@ class Trie:
             node = node.children[e]
         if node.value is not None:
             # we are not actually inserting a new node
-            self.length -= 1
+            self._length -= 1
         node.value = key
         # update length
-        self.length += 1
+        self._length += 1
 
     def delete(self, key: Any) -> None:
         if not key:
@@ -68,18 +68,18 @@ class Trie:
 
         r(self.root)
         # update length
-        self.length -= 1
+        self._length -= 1
 
-    def predict(self, partial_key: Any) -> List[Any]:
+    def predict(self, partial_key: Any) -> Iterable[Any]:
         """given a partial key find all the possible keys inside the trie
 
         Args:
             partial_key (Any): key must be iterable
 
         Returns:
-            List[Any]: list with the predictions
+            Iterable[Any]: list with the predictions
         """
-        tmp = []
+        _ = []
         # explore as far as we can
         node = self.root
         for e in partial_key:
@@ -92,13 +92,13 @@ class Trie:
             """explore all leafs from where we currently are"""
             # found a match, add it
             if node.value is not None:
-                tmp.append(node.value)
+                _.append(node.value)
             # keep exploring
             for child in node.children.values():
                 deep(child)
 
         deep(node)
-        return tmp
+        return _
 
     def search(self, key: Any) -> Node:
         """searches for the node with the given `key` in the trie
@@ -141,4 +141,4 @@ class Trie:
         return "".join(res)
 
     def __len__(self):
-        return self.length
+        return self._length

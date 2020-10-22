@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Iterable, Optional
 
 
 class Node:
@@ -16,10 +16,10 @@ class DoubleLinkedList:
     https://en.wikipedia.org/wiki/Doubly_linked_list
     """
 
-    def __init__(self, values: List[Any] = []):
+    def __init__(self, values: Iterable[Any] = []):
         self.head: Optional[Node] = None
         self.tail: Optional[Node] = None
-        self.length: int = 0
+        self._length: int = 0
         for value in values:
             self.append(value)
 
@@ -33,16 +33,16 @@ class DoubleLinkedList:
         if not self.head:
             self.head = Node(value)
             self.tail = self.head
-            self.length += 1
+            self._length += 1
             return
         # general case
-        tmp = self.tail
+        _ = self.tail
         self.tail = Node(value)
-        tmp.next = self.tail
+        _.next = self.tail
         # update prev links
-        self.tail.prev = tmp
+        self.tail.prev = _
         # update length
-        self.length += 1
+        self._length += 1
 
     def search(self, value: Any) -> Node:
         """search for the first node with the given 'value' and returns it
@@ -57,7 +57,7 @@ class DoubleLinkedList:
             Node: Node containing the given `value`
         """
         # empty list
-        if not self.length:
+        if not self._length:
             raise ValueError(f"{value} not found")
         # linear search
         node = self.head
@@ -77,44 +77,44 @@ class DoubleLinkedList:
             index (int): position
         """
         # special index is out of range O(1)
-        if self.length < index + 1:
+        if self._length < index + 1:
             self.append(value)
             return
         # special case: head O(1)
         if index == 0:
-            tmp = self.head
+            _ = self.head
             self.head = Node(value)
-            self.head.next = tmp
+            self.head.next = _
             # update prev link
             self.head.next.prev = self.head
             # update length
-            self.length += 1
+            self._length += 1
             return
         # special case: tail O(1)
-        if index + 1 == self.length:
-            tmp = self.tail
+        if index + 1 == self._length:
+            _ = self.tail
             self.tail = Node(self.tail.value)
             # update prev link
-            self.tail.prev = tmp
-            tmp.value = value
-            tmp.next = self.tail
+            self.tail.prev = _
+            _.value = value
+            _.next = self.tail
             # update length
-            self.length += 1
+            self._length += 1
             return
         # general case O(n)
         node = self.head
         while node.next and index - 1 > 0:
             node = node.next
             index -= 1
-        tmp = node.next
+        _ = node.next
         node.next = Node(value)
-        node.next.next = tmp
+        node.next.next = _
         # update prev links
         node.next.prev = node
         if node.next.next:
             node.next.next.prev = node.next
         # update length
-        self.length += 1
+        self._length += 1
 
     def delete(self, value: Any) -> None:
         """deletes the node with the given `value`
@@ -138,7 +138,7 @@ class DoubleLinkedList:
             if self.head:
                 self.head.prev = None
             # update length
-            self.length -= 1
+            self._length -= 1
             return
         # general case
         node = self.head
@@ -149,7 +149,7 @@ class DoubleLinkedList:
                 if node.next:
                     node.next.prev = node
                 # update length
-                self.length -= 1
+                self._length -= 1
                 return
             node = node.next
         raise ValueError(f"{value} not in the list")
@@ -170,7 +170,7 @@ class DoubleLinkedList:
         """
         # handle negative indexes
         if index < 0:
-            index = self.length + index
+            index = self._length + index
         # special case: empty list
         if not self.head:
             raise IndexError()
@@ -186,11 +186,11 @@ class DoubleLinkedList:
 
     def __repr__(self):
         node = self.head
-        tmp = []
+        _ = []
         while node:
-            tmp.append(f"{node.value}")
+            _.append(f"{node.value}")
             node = node.next
-        return " -> ".join(tmp)
+        return " -> ".join(_)
 
     def __len__(self):
-        return self.length
+        return self._length
