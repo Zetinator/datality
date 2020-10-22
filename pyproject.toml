@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "datality"
-version = "0.1.2"
+version = "0.1.3"
 description = "this package contains implementations from the classic datas tructures in the CLRS"
 authors = ["Zetinator <erick_zetina@hotmail.com>"]
 
